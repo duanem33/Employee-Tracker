@@ -24,14 +24,14 @@ connection.connect(function(err) {
     startApp()
 });
 
-//-----start the Employee Tracker
+//---------Start the Employee Tracker-----------------
 function startApp(){
     clear();
     renderImage()
     menuPrompt();
 }
 
-// render image
+//-------------Rendering image-------------------------
 function renderImage(){
     console.log(chalk.hex("	#228B22")(String.raw`
 #######                                                    #######                                           
@@ -44,7 +44,7 @@ function renderImage(){
    console.log(chalk.dim("  Database\n"));
 }
 
-//render table data and menu prompt
+//-----------------Render table and menu prompt-----------------------
 function renderScreen(tableTitle, tableData){
     clear();
     renderImage();
@@ -56,7 +56,7 @@ function renderScreen(tableTitle, tableData){
     menuPrompt();
 }
 
-//initial prompt - which type of query?
+//-----------------Menu Prompt---------------------------
 function menuPrompt(){
     inquirer
         .prompt({
@@ -130,7 +130,7 @@ function menuPrompt(){
         });
 }
 
-//department prompt
+//------------------------Department prompt---------------------------
 function promptDepartments(departments){
     inquirer
         .prompt({
@@ -144,7 +144,7 @@ function promptDepartments(departments){
         });
 }
 
-//manager prompt
+//---------------------Manager Prompt-------------------------
 function promptManagers(managers){
     inquirer
         .prompt({
@@ -158,9 +158,9 @@ function promptManagers(managers){
         });
 }
 
-//query all employees
+//-------------------Query for all Employees--------------------------
 function queryEmployeesAll(){
-    //sql query
+
     const query = `
     SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name AS department_name, concat(manager.first_name, " ", manager.last_name) AS manager_full_name
     FROM employee 
@@ -169,7 +169,7 @@ function queryEmployeesAll(){
 	LEFT JOIN employee as manager ON employee.manager_id = manager.id;`;
     connection.query(query, (err, res) => {
         if (err) throw err;
-        //build table data array from query result
+        //----------------Build table data array from query result-------------------------
         const tableData = [];
         for (let i = 0; i < res.length; i++) {
             tableData.push({ 
@@ -182,22 +182,22 @@ function queryEmployeesAll(){
                 "Manager": res[i].manager_full_name
             });
         }
-        //render screen
+        //-----------------Render Screen------------------------------
         renderScreen("All Employees", tableData);
     });
 }
 
-//query all departments
+//--------------------Query of departments-------------
 function queryDepartments(){
     const query = `SELECT department.name FROM department;`;
     connection.query(query, (err, res) => {
         if (err) throw err;
-        //extract department names to array
+        //-----extract department names to array------
         const departments = [];
         for (let i = 0; i < res.length; i++) {
             departments.push(res[i].name);
         }
-        //prompt for department selection
+        //--------department selection prompt-------------
         promptDepartments(departments)
     });
 }
@@ -218,7 +218,7 @@ function queryDepartmentsCallBack(callback){
 
 
 
-// Query the departments without employees
+// --------------Query the departments without employees------------------
 function queryDepartmentsOnly(){
     const query = `SELECT id, department.name FROM department;`;
     connection.query(query, (err, res) => {
@@ -231,12 +231,12 @@ function queryDepartmentsOnly(){
                 "Departments": res[i].name
             });
         }
-        // Show the departments
+        //---------------Show the departments-------------------
         renderScreen(`All Departments`, tableData);
     });
 }
 
-// Query the Roles only and display them for viewing
+// -------------Query the Roles only and display them for viewing----------------
 function queryRolesOnly() {
     const query = `SELECT id, title FROM employeesdb.role;`;
     //build table data array from query result
@@ -249,12 +249,12 @@ function queryRolesOnly() {
                 "Roles": res[i].title
             });
         }
-        // Show the Roles
+        //----------------Show the Roles---------------
         renderScreen("All Roles", tableData);
     });   
 }
 
-//query all managers
+//-------------Query all managers----------------
 function queryManagers(){
     const query = `
     SELECT DISTINCT concat(manager.first_name, " ", manager.last_name) AS full_name

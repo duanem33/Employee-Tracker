@@ -22,12 +22,12 @@ VALUES
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES 
-(1, "John", "Doe", 1, 1), 
-(2, "Joe", "Rop", 2, 1), 
-(3, "Blarf", "Ranlp", 3, 2), 
-(4, "Jort", "Plawn", 4, 3), 
-(5, "Wort", "Plorry", 5, 1), 
-(6, "Wrop", "Furtin", 6, 1),
-(7, "Tril", "Yurktun", 7, 6),
-(8, "Magie", "Turnball", 9 ,8),
-(9, "Michael", "Assets", 8, 2);
+(1, "Duane", "Maldonado", 1, 1), 
+(2, "Eglis", "Marrero", 2, 1), 
+(3, "Ricardo", "Melendez", 3, 2), 
+(4, "Edwin", "Forte", 4, 3), 
+(5, "Michael", "Ferreti", 5, 1), 
+(6, "Nobody", "Here", 6, 1),
+(7, "Joe", "Lazy", 7, 6),
+(8, "Never", "DoesAnything", 9 ,8),
+(9, "Ana", "Lisa", 8, 2);
