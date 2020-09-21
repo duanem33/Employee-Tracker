@@ -1,0 +1,23 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "As a business owner",
+  "main": "manage the departments, roles, and employees in my company",
+  "scripts": {
+    "test": "ss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duanem33/Employee-Tracker.git"
+  },
+  "keywords": [
+    "Employee",
+    "Tracker"
+  ],
+  "author": "Duane Maldonado",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duanem33/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/duanem33/Employee-Tracker#readme"
+}
